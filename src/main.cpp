@@ -11,12 +11,15 @@ const int kPauseBetweenActionsInMs = 3000;
 
 FlipDotDisplay *display;
 void setup() {
-  display = new FlipDotDisplay(kDisplayWidth, kDisplayWidth);
+  display = new FlipDotDisplay(kDisplayWidth, kDisplayHeight);
 }
 
 void loop() {
   display->clear();
   delay(kPauseBetweenActionsInMs);
-  display->fill();
-  delay(kPauseBetweenActionsInMs);
+  for (uint8_t y = 0; y < kDisplayHeight; y++) {
+    for (uint8_t x = 0; x < kDisplayWidth; x++) {
+      display->setPixel(x, y, true);
+    }
+  }
 }

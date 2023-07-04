@@ -5,35 +5,36 @@
 #ifndef DISPLAY_DISPLAY_H_
 #define DISPLAY_DISPLAY_H_
 
-#include <Arduino.h>
+#include <cstdint>
 
 namespace aivju {
+uint8_t GetModuleIndex(uint8_t x);
 
 // Interface for display provider mainly used for testing purposes
 class Display {
 public:
-  Display(byte width, byte height);
-  virtual void setPixel(byte x, byte y, bool toggle) = 0;
+  Display(uint8_t width, uint8_t height);
+  virtual void setPixel(uint8_t x, uint8_t y, bool toggle) = 0;
   virtual void clear() = 0;
   virtual void fill() = 0;
 
 protected:
-  byte width_;
-  byte height_;
+  uint8_t width_;
+  uint8_t height_;
 };
 
 class FlipDotDisplay : public Display {
 public:
-  FlipDotDisplay(byte width, byte height);
-  void setPixel(byte x, byte y, bool toggle) override;
+  FlipDotDisplay(uint8_t width, uint8_t height);
+  void setPixel(uint8_t x, uint8_t y, bool toggle) override;
   void clear() override;
   void fill() override;
 };
 
 class TerminalDisplay : public Display {
 public:
-  TerminalDisplay(byte width, byte height);
-  void setPixel(byte x, byte y, bool toggle) override;
+  TerminalDisplay(uint8_t width, uint8_t height);
+  void setPixel(uint8_t x, uint8_t y, bool toggle) override;
   void clear() override;
   void fill() override;
 };

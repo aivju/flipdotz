@@ -2,8 +2,10 @@
 // All rights reserved. Redistribution and use in source and binary forms,
 // with or without modification, are not permitted.
 
-#ifndef LIB_DISPLAY_DISPLAY_CONFIG_H_
-#define LIB_DISPLAY_DISPLAY_CONFIG_H_
+#ifndef DISPLAY_DISPLAY_CONFIG_H_
+#define DISPLAY_DISPLAY_CONFIG_H_
+
+#include <cstdint>
 
 namespace aivju {
 
@@ -16,13 +18,13 @@ namespace aivju {
 //     |          | |          | |          | |          | |      |
 //     +----------+ +----------+ +----------+ +----------+ +------+
 //
-const byte kModuleWidth = 28;
-const byte kModuleHeight = 16;
-const byte kNumModules = 4;
-const byte kColumnOffsetShortModule = 14;
-const byte kDisplayWidth = kModuleWidth * kNumModules + kColumnOffsetShortModule;
-const byte kDisplayHeight = kModuleHeight;
+const uint8_t kModuleHeight = 16;
+const uint8_t kModuleWidth = 28;
+const uint8_t kColumnShortModule = 14;
+const uint8_t kNumModules = 4;
+const uint8_t kDisplayWidth = kModuleWidth * kNumModules + kColumnShortModule;
+const uint8_t kDisplayHeight = kModuleHeight;
 
 } // namespace aivju
 
-#endif // LIB_DISPLAY_DISPLAY_CONFIG_H_
+#endif // DISPLAY_DISPLAY_CONFIG_H_

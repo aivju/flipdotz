@@ -2,8 +2,8 @@
 // All rights reserved. Redistribution and use in source and binary forms,
 // with or without modification, are not permitted.
 
-#ifndef BASE_ARRAY_SIZE_H_
-#define BASE_ARRAY_SIZE_H_
+#ifndef ARRAY_SIZE_H_
+#define ARRAY_SIZE_H_
 
 #include <cstddef>
 
@@ -24,4 +24,4 @@ template <typename T, std::size_t N> char (&ArraySizeHelper(T (&array)[N]))[N];
 template <typename T> inline void IgnoreResult(const T & /*unused*/) {}
 } // namespace aivju
 
-#endif // BASE_ARRAY_SIZE_H_
+#endif // ARRAY_SIZE_H_

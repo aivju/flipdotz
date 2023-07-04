@@ -3,8 +3,8 @@
 // with or without modification, are not permitted.
 
 #include "display.h"
-#include <Arduino.h>
 #include <cstdint>
+#include <iostream>
 #include <vector>
 
 namespace aivju {
@@ -12,7 +12,7 @@ namespace {
 std::vector<char> buffer;
 }
 
-TerminalDisplay::TerminalDisplay(byte width, byte height)
+TerminalDisplay::TerminalDisplay(uint8_t width, uint8_t height)
     : Display(width, height) {
   buffer.resize(width * height);
   for (int idx = 0; idx < buffer.size(); idx++) {
@@ -20,15 +20,16 @@ TerminalDisplay::TerminalDisplay(byte width, byte height)
   }
 }
 
-void TerminalDisplay::setPixel(byte x, byte y, bool toggle) {
+void TerminalDisplay::setPixel(uint8_t x, uint8_t y, bool toggle) {
   buffer[y * width_ + x] = 'X';
 
   for (int y = 0; y < height_; y++) {
     for (int x = 0; x < width_; x++) {
-      Serial.print(buffer[y * width_ + x]);
+      std::cout << buffer[y * width_ + x];
     }
-    Serial.println();
+    std::cout << std::endl;
   }
+  std::cout << "=========================" << std::endl;
 }
 
 void TerminalDisplay::clear() {}
