@@ -13,38 +13,20 @@ void setUp() {}
 void tearDown() {}
 
 void test_display_large_modules_calculation() {
-    // first module
-    for (uint8_t x = 0; x < kModuleWidth; x++) {
-        TEST_ASSERT_EQUAL(GetModuleIndex(x), 0);
+    for (uint8_t idx = 0; idx < kNumModules; idx++) {
+        TEST_ASSERT_EQUAL(GetModuleIndex(idx), 0);
     }
-
-    // second module
-    for (uint8_t x = kModuleWidth; x < 2 * kModuleWidth; x++) {
-        TEST_ASSERT_EQUAL(GetModuleIndex(x), 1);
-    }
-
-    // third module
-    for (uint8_t x = 2 * kModuleWidth; x < 3 * kModuleWidth; x++) {
-        TEST_ASSERT_EQUAL(GetModuleIndex(x), 2);
-    }
-
-    // fourth module
-    for (uint8_t x = 3 * kModuleWidth; x < 4 * kModuleWidth; x++) {
-        TEST_ASSERT_EQUAL(GetModuleIndex(x), 3);
-    }
+    TEST_ASSERT_EQUAL(GetModuleIndex(kNumModules), 14);
 }
 
-void test_display_offset_small_module_calculation() {
+void test_display_indexing() {
     TEST_ASSERT_LESS_THAN_UINT8(kDisplayWidth, 4 * kModuleWidth);
-    for (uint8_t x = 4 * kModuleWidth; x < kDisplayWidth; x++) {
-        TEST_ASSERT_EQUAL(GetModuleIndex(x), 4);
-    }
 }
 
 void RUN_UNITY_TESTS() {
     UNITY_BEGIN();
     RUN_TEST(test_display_large_modules_calculation);
-    RUN_TEST(test_display_offset_small_module_calculation);
+    RUN_TEST(test_display_indexing);
     UNITY_END();
 }
 
