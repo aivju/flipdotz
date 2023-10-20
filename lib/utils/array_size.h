@@ -15,13 +15,15 @@ namespace internal {
 // defining new arrays, for example. If you use arraysize on a pointer by
 // mistake, you will get a compile-time error, since *foo_ and foo_[] are
 // two different things.
-template <typename T, std::size_t N> char (&ArraySizeHelper(T (&array)[N]))[N];
+template <typename T, std::size_t N>
+char (&ArraySizeHelper(T (&array)[N]))[N];
 
 #define arraysize(arr) (sizeof(::aivju::internal::ArraySizeHelper(arr)))
-} // namespace internal
+}  // namespace internal
 
 // Used to explicitly mark the return value of a function as unused.
-template <typename T> inline void IgnoreResult(const T & /*unused*/) {}
-} // namespace aivju
+template <typename T>
+inline void IgnoreResult(const T& /*unused*/) {}
+}  // namespace aivju
 
-#endif // ARRAY_SIZE_H_
+#endif  // ARRAY_SIZE_H_
