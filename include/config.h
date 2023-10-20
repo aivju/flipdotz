@@ -11,23 +11,23 @@ namespace aivju {
 
 // Adjusted pin assignments from LAWO ESP32 controller PCB by nalx @ section77
 static uint8_t kPins[]{
-    1,  //  [0] DATA
-    21, //  [1] COLUMN_1
-    19, //  [2] COLUMN_2
-    23, //  [3] COLUMN_3
-    18, //  [4] COLUMN_4
-    5,  //  [5] COLUMN_5
-    17, //  [6] ROW_1
-    16, //  [7] ROW_2
-    4,  //  [8] ROW_3
-    22, //  [9] ROW_4
-    2,  // [10] ENABLE_SET
-    15, // [11] ENABLE_RESET
-    13, // [12] MODULE_1
-    12, // [13] MODULE_2
-    14, // [14] MODULE_3
-    27, // [15] MODULE_4
-    26  // [16] MODULE_5
+    1,   //  [0] DATA
+    21,  //  [1] COLUMN_1
+    19,  //  [2] COLUMN_2
+    23,  //  [3] COLUMN_3
+    18,  //  [4] COLUMN_4
+    5,   //  [5] COLUMN_5
+    17,  //  [6] ROW_1
+    16,  //  [7] ROW_2
+    4,   //  [8] ROW_3
+    22,  //  [9] ROW_4
+    2,   // [10] ENABLE_SET
+    15,  // [11] ENABLE_RESET
+    13,  // [12] MODULE_1
+    12,  // [13] MODULE_2
+    14,  // [14] MODULE_3
+    27,  // [15] MODULE_4
+    26   // [16] MODULE_5
 };
 
 // clang-format off
@@ -39,6 +39,6 @@ const int kDelayHighPulsInUs = 750;
 const int kDelayFlipPulsInUs = 100;
 const int kPauseBetweenDotFlipsInMs = 2;
 
-} // namespace aivju
+}  // namespace aivju
 
-#endif // CONFIG_H_
+#endif  // CONFIG_H_
