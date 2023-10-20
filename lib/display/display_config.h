@@ -25,6 +25,6 @@ const uint8_t kNumModules = 4;
 const uint8_t kDisplayWidth = kModuleWidth * kNumModules + kColumnShortModule;
 const uint8_t kDisplayHeight = kModuleHeight;
 
-} // namespace aivju
+}  // namespace aivju
 
-#endif // DISPLAY_DISPLAY_CONFIG_H_
+#endif  // DISPLAY_DISPLAY_CONFIG_H_
