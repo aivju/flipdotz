@@ -6,16 +6,7 @@
 
 namespace aivju {
 
-TextRenderer::TextRenderer(Display* display, const Font& font) : display_(display), font_(font) {
-}
-
-void TextRenderer::clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) const {
-    for (uint8_t i = x; i < x + width; ++i) {
-        for (uint8_t j = y; j < y + height; ++j) {
-            display_->drawPixel(i, j, false);
-        }
-    }
-}
+TextRenderer::TextRenderer(Display* display, const Font& font) : display_(display), font_(font) {}
 
 void TextRenderer::renderText(uint8_t x, uint8_t y, const std::string& text) const {
     // Calculate the width and height of the text for clearing
