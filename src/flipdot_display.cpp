@@ -95,7 +95,7 @@ void FlipDotDisplay::clear() {
     }
 }
 
-void TerminalDisplay::clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
+void FlipDotDisplay::clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
     for (uint8_t i = x; i < x + width; ++i) {
         for (uint8_t j = y; j < y + height; ++j) {
             drawPixel(x, y, false);
