@@ -8,8 +8,7 @@
 
 namespace aivju {
 
-ClockWidget::ClockWidget(uint8_t x, uint8_t y, Font& font) : clock_("", x, y, font) {
-}
+ClockWidget::ClockWidget(uint8_t x, uint8_t y, const Font& font) : clock_("", x, y, font) {}
 
 void ClockWidget::render(Display* display) {
     clock_.setText(CurrentTime());

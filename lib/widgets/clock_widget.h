@@ -16,7 +16,7 @@ namespace aivju {
 
 class ClockWidget : public Widget {
   public:
-    ClockWidget(uint8_t x, uint8_t y, Font& font);
+    ClockWidget(uint8_t x, uint8_t y, const Font& font);
     void render(Display* display) override;
 
   private:
