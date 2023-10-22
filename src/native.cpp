@@ -2,100 +2,41 @@
 // All rights reserved. Redistribution and use in source and binary forms,
 // with or without modification, are not permitted.
 
-#include "base_64.h"
+#include <chrono>
+#include <thread>
+
+#include "clock_widget.h"
+#include "date_widget.h"
 #include "display.h"
 #include "display_config.h"
-#include "dotz_font.h"
-#include <bitset>
-#include <chrono>
-#include <cmath>
-#include <iostream>
-#include <sstream>
+#include "dotzfont_medium.h"
+#include "dotzfont_small.h"
+#include "renderer.h"
+#include "weather_widget.h"
 
 using namespace aivju;
-using namespace std::chrono;
+TerminalDisplay* display;
+Renderer* dashboard;
 
-std::string kDotzeDudes =
-    "00000000000000000000000000000000000000000000000000000000000000000000000000"
-    "00000000000000000000000000000000000000000000000000000000000000000000000000"
-    "00000000000000000000000000000000000000000000000000000000000000000000000000"
-    "00000000000000000000000000000000001111111100000001111111000011111111110111"
-    "11110111111111100001111111100001100000001101111111100001111111111000111111"
-    "10000000000011111111100000111111111000111111111101111111011111111110000111"
-    "11111100011000000011011111111100011111111110011111111100000000001100000111"
-    "00011100000111000000110000000001110110000000000001100000111001100000001101"
-    "10000011100110000000001110000011100000000011000000110001100000001100000011"
-    "00000000011001100000000000011000000110011000000011011000000110011000000000"
-    "11000000011000000000110000000110110000000001100000110000000011000110000000"
-    "00000110000000110110000000110110000000110110000000001100000000000000000011"
-    "00000001101100000000011000001100000000110001111111110000011000000011011000"
-    "00001101100000001101111111110011111111100000000000110000000110110000000001"
-    "10000011000000011000011111111100000110000000110110000000110110000000110111"
-    "11111100011111111100000000001100000001101100000000011000001100000001100001"
-    "10000000000001100000001101100000001101100000001101100000000000000000111000"
-    "00000011000000011011000000000110000011000000110000011000000000000110000000"
-    "11011000000011011000000011011000000000000000000110000000001100000011000110"
-    "00000011000000110000001100000110000000000001100000011000110000011001100000"
-    "01100110000000001100000001100000000011000001110001110000011100000011000001"
-    "11000001100000000000011000001110001110001110011000001110011000000000111000"
-    "00111000000000111111111000001111111110000000110000011111110111111111100001"
-    "11111111000001111111000111111111000111111111100111111111000000000011111111"
-    "00000001111111000000001100000111111101111111111000011111111000000011111000"
-    "01111111100001111111111000111111100000000000000000000000000000000000000000"
-    "00000000000000000000000000000000000000000000000000000000000000000000000000"
-    "000000000000000000";
+void setup() {
+    display = new TerminalDisplay(kDisplayWidth, kDisplayHeight);
+    dashboard = new Renderer(display);
 
-std::string GetLine(uint8_t input) {
-  uint16_t input_shifted = static_cast<uint16_t>(input) << 8;
-  std::bitset<16> b(input_shifted);
-  return b.to_string();
+    Font small(DotzFontSmall);
+    Font medium(DotzFontMedium);
+    dashboard->addWidget(ClockWidget(1, 1, medium));
+    dashboard->addWidget(DateWidget(1, 10, small));
+    dashboard->addWidget(WeatherWidget(50, 1, small, medium));
 }
 
-TerminalDisplay *display;
+void loop() {
+    dashboard->drawDisplay();
+}
+
 int main() {
-  display = new TerminalDisplay(kDisplayWidth, kDisplayHeight);
-  for (uint8_t y = 0; y < kDisplayHeight; y++) {
-    for (uint8_t x = 0; x < kDisplayWidth; x++) {
-      if (kDotzeDudes[y * kDisplayWidth + x] == '1') {
-        display->setPixel(x, y, true);
-      }
+    setup();
+    while (true) {
+        loop();
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
-  }
-  display->show();
-//
-//  std::string encoded = "AAAkABXwARBvEA8QPx4vAiACP/4AAAAAAAAAAAAAAAA=";
-//  std::string byte_string = Base64Decode(encoded);
-//  std::string decoded = ByteStringToBinary(byte_string);
-//
-//  std::cout << "Decoded Binary: \n";
-//  for (int i = 0; i < decoded.size(); i += 16) {
-//    std::cout << decoded.substr(i, 16) << std::endl;
-//  }
-//  int advance = 0;
-//  for (const auto &c : std::string("alles klar was geht ab")) {
-//    if (c == ' ') {
-//      advance += 2;
-//      continue;
-//    };
-//    auto glyph = FontSpecificGlyph[static_cast<int>(c)-59];
-//    for (int y = 0; y < glyph.bit_height; y++) {
-//      auto line = GetLine(FontSpecificBitmap[glyph.offset+y]);
-//      std::cout << line << std::endl;
-//      for (int x = 0; x < line.size(); x++) {
-//        if (line[x] == '1')
-//          display->setPixel(x+advance+1, y+1, true);
-//      }
-//    }
-//    advance += glyph.advance;
-//  }
-
-
-//  for (size_t idx = 0; idx < kDotzeDudes.size(); idx++) {
-//    if (kDotzeDudes[idx] == '1') {
-//      uint8_t x = idx / kDisplayWidth;
-//      uint8_t y = idx % kDisplayWidth;
-//      display->setPixel(x, y, true);
-//    }
-//  }
-  return 0;
 }
