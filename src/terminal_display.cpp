@@ -3,8 +3,8 @@
 // with or without modification, are not permitted.
 
 #include <iostream>
-#include <vector>
 #include <thread>
+#include <vector>
 
 #include "display.h"
 
@@ -39,8 +39,28 @@ void TerminalDisplay::show() {
     }
 }
 
-void TerminalDisplay::clear() {}
+void TerminalDisplay::clear() {
+    for (uint8_t x = 0; x < width_; ++x) {
+        for (uint8_t y = 0; y < height_; ++y) {
+            drawPixel(x, y, false);
+        }
+    }
+}
 
-void TerminalDisplay::fill() {}
+void TerminalDisplay::clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
+    for (uint8_t i = x; i < x + width; ++i) {
+        for (uint8_t j = y; j < y + height; ++j) {
+            drawPixel(i, j, false);
+        }
+    }
+}
+
+void TerminalDisplay::fill() {
+    for (uint8_t x = 0; x < width_; ++x) {
+        for (uint8_t y = 0; y < height_; ++y) {
+            drawPixel(x, y, true);
+        }
+    }
+}
 
 }  // namespace aivju

@@ -19,6 +19,7 @@ class Display {
     virtual void setPixel(uint8_t x, uint8_t y, bool toggle);
     virtual void drawPixel(uint8_t x, uint8_t y, bool toggle) = 0;
     virtual void clear() = 0;
+    virtual void clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) = 0;
     virtual void fill() = 0;
     void render();
 
@@ -34,6 +35,7 @@ class FlipDotDisplay : public Display {
     FlipDotDisplay(uint8_t width, uint8_t height);
     void drawPixel(uint8_t x, uint8_t y, bool toggle) override;
     void clear() override;
+    void clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) override;
     void fill() override;
 };
 
@@ -43,6 +45,7 @@ class TerminalDisplay : public Display {
     void drawPixel(uint8_t x, uint8_t y, bool toggle) override;
     void show();
     void clear() override;
+    void clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) override;
     void fill() override;
 };
 
