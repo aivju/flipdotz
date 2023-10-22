@@ -11,11 +11,11 @@
 #include <WiFi.h>
 
 #include <cmath>
+#include "credentials.h"
 
 namespace aivju {
 
 const char* kOpenWeatherHost = "http://api.openweathermap.org";
-const char* kOpenWeatherAPIKey = "e7a53f741310063e57b7205041bdd53b";
 const char* kCity = "Wiesbaden,DE";
 
 WeatherData FetchWeatherData() {
