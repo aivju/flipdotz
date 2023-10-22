@@ -18,11 +18,12 @@ class IconElement : public Element {
     static const uint8_t kHeight = 16;
 
     IconElement(const uint16_t* data, uint8_t x, uint8_t y);
+    void setData(const uint16_t* data);
     void setPosition(uint8_t x, uint8_t y) override;
     void render(Display* display) const override;
 
   private:
-    const uint16_t* data_;
+    uint16_t* data_;
 };
 
 }  // namespace aivju

@@ -5,6 +5,7 @@
 #ifndef OPEN_WEATHER_ENDPOINT_H_
 #define OPEN_WEATHER_ENDPOINT_H_
 
+#include <cstdint>
 #include <string>
 
 namespace aivju {
@@ -13,7 +14,7 @@ struct WeatherData {
     int temperature;
     int temp_min;
     int temp_max;
-    std::string icon;
+    const uint16_t* icon;
     std::string coverage;
 };
 

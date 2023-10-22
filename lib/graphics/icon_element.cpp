@@ -4,13 +4,21 @@
 
 #include "icon_element.h"
 
+#include <algorithm>
+
 namespace aivju {
 
-IconElement::IconElement(const uint16_t* data, uint8_t x, uint8_t y) : Element(x, y), data_(data) {}
+IconElement::IconElement(const uint16_t* data, uint8_t x, uint8_t y) : Element(x, y) {
+    std::copy(data, data + 16, const_cast<uint16_t*>(data_));
+}
 
 void IconElement::setPosition(uint8_t x, uint8_t y) {
     x_ = x;
     y_ = y;
+}
+
+void IconElement::setData(const uint16_t* data) {
+    std::copy(data, data + 16, data_);
 }
 
 void IconElement::render(Display* display) const {

@@ -42,6 +42,7 @@ void WeatherWidget::updateWeatherData() {
     auto data = FetchWeatherData();
 
     temperature_.setText(StrFormat("%02d* C", data.temperature));
+    weather_icon_.setData(data.icon);
     coverage_.setText(data.coverage);
     min_temp_.setText(StrFormat("%02d* C", data.temp_min));
     max_temp_.setText(StrFormat("%02d* C", data.temp_max));

@@ -11,9 +11,35 @@
 #include <WiFi.h>
 
 #include <cmath>
+#include <string>
+#include <unordered_map>
+
 #include "credentials.h"
+#include "weather_widget.h"
 
 namespace aivju {
+namespace {
+std::pair<std::string, const uint16_t*> CoverageForIcon(const std::string& icon) {
+    std::unordered_map<std::string, std::pair<std::string, const uint16_t*>> coverageMap = {
+        {"01",   {"Heiter", k01Icon}},
+        {"02",   {"Wolkig", k02Icon}},
+        {"03", {"Bewoelkt", k03Icon}},
+        {"04",   {"Wolken", k04Icon}},
+        {"09",  {"Schauer", k09Icon}},
+        {"10",    {"Regen", k10Icon}},
+        {"11", {"Gewitter", k11Icon}},
+        {"13",   {"Schnee", k13Icon}},
+        {"50",    {"Nebel", k50Icon}}
+    };
+
+    std::string key = icon.substr(0, 2);
+    if (coverageMap.find(key) != coverageMap.end()) {
+        return coverageMap[key];
+    } else {
+        return {"Unknown", nullptr};  // Return nullptr if the icon is not found
+    }
+}
+}  // namespace
 
 const char* kOpenWeatherHost = "http://api.openweathermap.org";
 const char* kCity = "Wiesbaden,DE";
@@ -39,7 +65,10 @@ WeatherData FetchWeatherData() {
             tmp = doc["main"]["temp_max"];
             data.temp_max = std::lrint(tmp);
             const char* icon = doc["weather"][0]["icon"];
-            data.icon = icon;
+            
+            auto result = CoverageForIcon(icon);
+            data.coverage = result.first;
+            data.icon = result.second;
         }
     }
 
