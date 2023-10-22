@@ -18,4 +18,12 @@ uint8_t GetModuleIndex(uint8_t module_idx) {
 
 Display::Display(uint8_t width, uint8_t height) : width_(width), height_(height) {}
 
+uint8_t Display::getWidth() const {
+    return width_;
+}
+
+uint8_t Display::getHeight() const {
+    return height_;
+}
+
 }  // namespace aivju

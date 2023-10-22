@@ -14,6 +14,8 @@ uint8_t GetModuleIndex(uint8_t x);
 class Display {
   public:
     Display(uint8_t width, uint8_t height);
+    uint8_t getWidth() const;
+    uint8_t getHeight() const;
     virtual void setPixel(uint8_t x, uint8_t y, bool toggle) = 0;
     virtual void clear() = 0;
     virtual void fill() = 0;
