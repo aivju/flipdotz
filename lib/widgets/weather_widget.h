@@ -6,6 +6,12 @@
 #define WIDGETS_WEATHER_WIDGETS_H_
 
 #include <cstdint>
+#include <ctime>
+
+#include "font.h"
+#include "icon_element.h"
+#include "text_element.h"
+#include "widget.h"
 
 namespace aivju {
 
@@ -29,8 +35,8 @@ const uint16_t k04Icon[] = {0x0,    0x0,    0x3c0,  0x240,  0x1e70, 0x1050, 0x70
                             0x400e, 0x7ffa, 0x1002, 0x1ffe, 0x0,    0x0,    0x0,    0x0};
 
 // shower rain
-const uint16_t k09Icon[] = {0x0,    0x3c0,  0x240,  0x1e70, 0x1050, 0x7078, 0x4008, 0x440e,
-                            0x7ffa, 0x1442, 0x1ffe, 0x150,  0x410,  0x440,  0x40,   0x0};
+const uint16_t k09Icon[] = {0x0,    0x0,    0x1f0, 0x110, 0xf10, 0x810, 0x381e, 0x2002,
+                            0x240a, 0x3ffe, 0x528, 0x20,  0x508, 0x120, 0x0,    0x0};
 
 // rain
 const uint16_t k10Icon[] = {0x0,    0x2400, 0x15f0, 0x110, 0x6f10, 0xf10, 0x3f1e, 0x2f02,
@@ -47,6 +53,22 @@ const uint16_t k13Icon[] = {0x0,    0x0,   0x380,  0x920, 0x1930, 0x540, 0x2288,
 // mist
 const uint16_t k50Icon[] = {0x0,    0x0, 0x380, 0x0, 0x3fc0, 0x0, 0x7fc, 0x0,
                             0x7fc0, 0x0, 0xfe0, 0x0, 0x7f0,  0x0, 0x0,   0x0};
+
+class WeatherWidget : public Widget {
+  public:
+    WeatherWidget(uint8_t x, uint8_t y, const Font& small, const Font& medium);
+    void render(Display* display) override;
+
+  private:
+    void updateWeatherData();
+
+    uint8_t x_, y_;
+    std::time_t last_api_call_;
+    TextElement temperature_;
+    TextElement coverage_;
+    TextElement min_temp_, max_temp_;
+    IconElement weather_icon_;
+};
 
 }  // namespace aivju
 
