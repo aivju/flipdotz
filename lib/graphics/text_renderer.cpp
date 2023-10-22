@@ -6,17 +6,18 @@
 
 namespace aivju {
 
-TextRenderer::TextRenderer(Display* display, Font& font) : display_(display), font_(font) {}
+TextRenderer::TextRenderer(Display* display, const Font& font) : display_(display), font_(font) {
+}
 
-void TextRenderer::clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
+void TextRenderer::clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) const {
     for (uint8_t i = x; i < x + width; ++i) {
         for (uint8_t j = y; j < y + height; ++j) {
-            display_->setPixel(i, j, false);
+            display_->drawPixel(i, j, false);
         }
     }
 }
 
-void TextRenderer::renderText(uint8_t x, uint8_t y, const std::string& text) {
+void TextRenderer::renderText(uint8_t x, uint8_t y, const std::string& text) const {
     // Calculate the width and height of the text for clearing
     // that specific area to avoid overdrawing
     uint8_t text_width = 0;
@@ -33,7 +34,6 @@ void TextRenderer::renderText(uint8_t x, uint8_t y, const std::string& text) {
             }
         }
     }
-    clearArea(x, y, text_width, text_height);
 
     for (char c : text) {
         const uint8_t* data = font_.getCharData(c);
@@ -47,7 +47,7 @@ void TextRenderer::renderText(uint8_t x, uint8_t y, const std::string& text) {
         for (int row = 0; row < glyph.bit_height; ++row) {
             for (int col = 0; col < glyph.bit_width; ++col) {
                 bool pixel = (data[row] >> (7 - col)) & 0x01;
-                display_->setPixel(x + col + glyph.x_offset, y + row + glyph.y_offset, pixel);
+                display_->drawPixel(x + col + glyph.x_offset, y + row + glyph.y_offset, pixel);
             }
         }
 

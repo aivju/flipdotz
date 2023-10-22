@@ -8,8 +8,9 @@
 
 namespace aivju {
 
-TextElement::TextElement(const std::string& text, uint8_t x, uint8_t y, Font& font)
-    : text_(text), x_(x), y_(y), font_(font) {}
+TextElement::TextElement(const std::string& text, uint8_t x, uint8_t y, const Font& font)
+    : Element(x, y), text_(text), font_(font) {
+}
 
 void TextElement::setText(const std::string& text) {
     text_ = text;
@@ -20,7 +21,8 @@ void TextElement::setPosition(uint8_t x, uint8_t y) {
     y_ = y;
 }
 
-void TextElement::render(Display* display) {
+void TextElement::render(Display* display) const {
+    auto glyph = font_.getCharGlyph(56);
     TextRenderer renderer(display, font_);
     renderer.renderText(x_, y_, text_);
 }

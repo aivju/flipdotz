@@ -15,13 +15,13 @@ namespace aivju {
 
 class TextRenderer {
   public:
-    TextRenderer(Display* display, Font& font);
-    void clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
-    void renderText(uint8_t x, uint8_t y, const std::string& text);
+    TextRenderer(Display* display, const Font& font);
+    void clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) const;
+    void renderText(uint8_t x, uint8_t y, const std::string& text) const;
 
   private:
     Display* display_;
-    Font& font_;
+    Font font_;
 };
 
 }  // namespace aivju

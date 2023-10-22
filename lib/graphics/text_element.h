@@ -9,23 +9,22 @@
 #include <string>
 
 #include "display.h"
+#include "element.h"
 #include "font.h"
 
 namespace aivju {
 
-class TextElement {
+class TextElement : public Element {
   public:
-    TextElement(const std::string& text, uint8_t x, uint8_t y, Font& font);
+    TextElement(const std::string& text, uint8_t x, uint8_t y, const Font& font);
     void setText(const std::string& text);
-    void setPosition(uint8_t x, uint8_t y);
+    void setPosition(uint8_t x, uint8_t y) override;
 
-    void render(Display* display);
+    void render(Display* display) const override;
 
   private:
     std::string text_;
-    uint8_t x_;
-    uint8_t y_;
-    Font& font_;
+    Font font_;
 };
 
 }  // namespace aivju

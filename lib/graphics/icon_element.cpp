@@ -6,18 +6,18 @@
 
 namespace aivju {
 
-IconElement::IconElement(const uint16_t* data, uint8_t x, uint8_t y) : data_(data), x_(x), y_(y) {}
+IconElement::IconElement(const uint16_t* data, uint8_t x, uint8_t y) : Element(x, y), data_(data) {}
 
 void IconElement::setPosition(uint8_t x, uint8_t y) {
     x_ = x;
     y_ = y;
 }
 
-void IconElement::render(Display* display) {
+void IconElement::render(Display* display) const {
     for (uint8_t row = 0; row < kHeight; ++row) {
         for (uint8_t col = 0; col < kWidth; ++col) {
             bool pixel = (data_[row] >> (kWidth - col)) & 0x01;
-            display->setPixel(x_ + col, y_ + row, pixel);
+            display->drawPixel(x_ + col, y_ + row, pixel);
         }
     }
 }
