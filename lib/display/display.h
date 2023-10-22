@@ -16,19 +16,23 @@ class Display {
     Display(uint8_t width, uint8_t height);
     uint8_t getWidth() const;
     uint8_t getHeight() const;
-    virtual void setPixel(uint8_t x, uint8_t y, bool toggle) = 0;
+    virtual void setPixel(uint8_t x, uint8_t y, bool toggle);
+    virtual void drawPixel(uint8_t x, uint8_t y, bool toggle) = 0;
     virtual void clear() = 0;
     virtual void fill() = 0;
+    void render();
 
   protected:
     uint8_t width_;
     uint8_t height_;
+    bool** current_buffer;
+    bool** next_buffer;
 };
 
 class FlipDotDisplay : public Display {
   public:
     FlipDotDisplay(uint8_t width, uint8_t height);
-    void setPixel(uint8_t x, uint8_t y, bool toggle) override;
+    void drawPixel(uint8_t x, uint8_t y, bool toggle) override;
     void clear() override;
     void fill() override;
 };
@@ -36,7 +40,7 @@ class FlipDotDisplay : public Display {
 class TerminalDisplay : public Display {
   public:
     TerminalDisplay(uint8_t width, uint8_t height);
-    void setPixel(uint8_t x, uint8_t y, bool toggle) override;
+    void drawPixel(uint8_t x, uint8_t y, bool toggle) override;
     void show();
     void clear() override;
     void fill() override;

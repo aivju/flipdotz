@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <vector>
-#include <chrono>
 #include <thread>
 
 #include "display.h"
@@ -17,15 +16,15 @@ std::vector<char> buffer;
 TerminalDisplay::TerminalDisplay(uint8_t width, uint8_t height) : Display(width, height) {
     buffer.resize(width * height);
     for (int idx = 0; idx < buffer.size(); idx++) {
-        buffer[idx] = '_';
+        buffer[idx] = ' ';
     }
 }
 
-void TerminalDisplay::setPixel(uint8_t x, uint8_t y, bool toggle) {
+void TerminalDisplay::drawPixel(uint8_t x, uint8_t y, bool toggle) {
     if (toggle) {
         buffer[y * width_ + x] = 'O';
     } else {
-        buffer[y * width_ + x] = '_';
+        buffer[y * width_ + x] = ' ';
     }
     std::this_thread::sleep_for(std::chrono::milliseconds(20));
     show();

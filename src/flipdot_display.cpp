@@ -73,7 +73,7 @@ FlipDotDisplay::FlipDotDisplay(uint8_t width, uint8_t height) : Display(width, h
     delay(1000);
 }
 
-void FlipDotDisplay::setPixel(uint8_t x, uint8_t y, bool toggle) {
+void FlipDotDisplay::drawPixel(uint8_t x, uint8_t y, bool toggle) {
     if (x >= kDisplayWidth || y >= kModuleHeight) {
         return;
     }
