@@ -12,7 +12,6 @@
 namespace aivju {
 
 std::unique_ptr<tm> TimeInfo() {
-    std::locale::global(std::locale("de_DE.UTF-8"));
     time_t raw_time;
     std::time(&raw_time);
     tm* local_tm = localtime(&raw_time);
