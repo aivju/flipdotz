@@ -6,6 +6,7 @@
 #define WIDGETS_ICON_ELEMENT_H_
 
 #include <cstdint>
+#include <vector>
 
 #include "display.h"
 #include "element.h"
@@ -23,7 +24,7 @@ class IconElement : public Element {
     void render(Display* display) const override;
 
   private:
-    uint16_t* data_;
+    std::vector<uint16_t> data_;
 };
 
 }  // namespace aivju
