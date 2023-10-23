@@ -13,10 +13,10 @@ WeatherWidget::WeatherWidget(uint8_t x, uint8_t y, const Font& small, const Font
     : x_(x),
       y_(y),
       temperature_("", x + 20, y, medium),
-      coverage_("", x + 20, y + 10, small),
-      min_temp_("", x + 60, y, small),
-      max_temp_("", x + 60, y + 10, small),
-      weather_icon_(k09Icon, x, y) {
+      coverage_("", x + 20, y + 9, small),
+      min_temp_("", x + 64, y, small),
+      max_temp_("", x + 64, y + 9, small),
+      weather_icon_(k01Icon, x, y-1 ) {
     last_api_call_ = 0;
 }
 

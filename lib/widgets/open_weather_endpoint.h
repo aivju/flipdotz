@@ -7,6 +7,7 @@
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 namespace aivju {
 
@@ -14,7 +15,7 @@ struct WeatherData {
     int temperature;
     int temp_min;
     int temp_max;
-    const uint16_t* icon;
+    std::vector<uint16_t> icon;
     std::string coverage;
 };
 

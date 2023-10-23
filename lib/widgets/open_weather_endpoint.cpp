@@ -10,6 +10,7 @@
 #include <HTTPClient.h>
 #include <WiFi.h>
 
+#include <algorithm>
 #include <cmath>
 #include <string>
 #include <unordered_map>
@@ -23,7 +24,7 @@ std::pair<std::string, const uint16_t*> CoverageForIcon(const std::string& icon)
     std::unordered_map<std::string, std::pair<std::string, const uint16_t*>> coverageMap = {
         {"01",   {"Heiter", k01Icon}},
         {"02",   {"Wolkig", k02Icon}},
-        {"03", {"Bewoelkt", k03Icon}},
+        {"03",  {"Bedeckt", k03Icon}},
         {"04",   {"Wolken", k04Icon}},
         {"09",  {"Schauer", k09Icon}},
         {"10",    {"Regen", k10Icon}},
@@ -68,7 +69,7 @@ WeatherData FetchWeatherData() {
             
             auto result = CoverageForIcon(icon);
             data.coverage = result.first;
-            data.icon = result.second;
+            std::copy(result.second, result.second + 16, std::back_inserter(data.icon));
         }
     }
 

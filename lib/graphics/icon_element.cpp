@@ -21,6 +21,10 @@ void IconElement::setData(const uint16_t* data) {
     std::copy(data, data + 16, std::back_inserter(data_));
 }
 
+void IconElement::setData(const std::vector<uint16_t> data) {
+    data_ = data;
+}
+
 void IconElement::render(Display* display) const {
     for (uint8_t row = 0; row < kHeight; ++row) {
         for (uint8_t col = 0; col < kWidth; ++col) {
