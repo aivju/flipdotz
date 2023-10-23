@@ -2,7 +2,6 @@
 // All rights reserved. Redistribution and use in source and binary forms,
 // with or without modification, are not permitted
 
-#include <Arduino.h>
 #include <WiFi.h>
 
 #include <ctime>
@@ -47,22 +46,22 @@ void configureTime() {
 }
 
 void setup() {
-    display = new FlipDotDisplay(kDisplayWidth, kDisplayHeight);
-    display->clear();
-
     connectWifi();
     configureTime();
 
     display = new FlipDotDisplay(kDisplayWidth, kDisplayHeight);
+    display->clear();
     dashboard = new Renderer(display);
 
     Font small(DotzFontSmall);
     Font medium(DotzFontMedium);
     dashboard->addWidget(ClockWidget(1, 1, medium));
     dashboard->addWidget(DateWidget(1, 10, small));
-    dashboard->addWidget(WeatherWidget(50, 1, small, medium));
+    dashboard->addWidget(WeatherWidget(46, 1, small, medium));
 }
+
 
 void loop() {
     dashboard->drawDisplay();
+    delay(20000);
 }
