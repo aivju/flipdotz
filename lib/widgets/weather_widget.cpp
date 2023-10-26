@@ -8,15 +8,17 @@
 #include "str_format.h"
 
 namespace aivju {
+const uint8_t kTempOffset = 19;
+const uint8_t kMinMaxOffset = 59;
 
 WeatherWidget::WeatherWidget(uint8_t x, uint8_t y, const Font& small, const Font& medium)
     : x_(x),
       y_(y),
-      temperature_("", x + 20, y, medium),
-      coverage_("", x + 20, y + 9, small),
-      min_temp_("", x + 64, y, small),
-      max_temp_("", x + 64, y + 9, small),
-      weather_icon_(k01Icon, x, y-1 ) {
+      weather_icon_(k01Icon, x, y-1),
+      temperature_("", x + kTempOffset, y, medium),
+      coverage_("", x + kTempOffset, y + 9, small),
+      max_temp_("", x + kMinMaxOffset, y, small),
+      min_temp_("", x + kMinMaxOffset, y + 9, small) {
     last_api_call_ = 0;
 }
 
@@ -31,8 +33,8 @@ void WeatherWidget::render(Display* display) {
         // TODO(kai): Fix overdrawing bug
         //display->clearArea(x_ + 20, y_ + 10, 35, 5);
         coverage_.render(display);
-        min_temp_.render(display);
         max_temp_.render(display);
+        min_temp_.render(display);
 
         last_api_call_ = current_time;
     }
@@ -44,8 +46,8 @@ void WeatherWidget::updateWeatherData() {
     temperature_.setText(StrFormat("%02d* C", data.temperature));
     weather_icon_.setData(data.icon);
     coverage_.setText(data.coverage);
-    min_temp_.setText(StrFormat("%02d* C", data.temp_min));
-    max_temp_.setText(StrFormat("%02d* C", data.temp_max));
+    min_temp_.setText(StrFormat("< %02d* C", data.temp_min));
+    max_temp_.setText(StrFormat("> %02d* C", data.temp_max));
 }
 
 }  // namespace aivju

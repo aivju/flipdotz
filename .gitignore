@@ -2,3 +2,5 @@
 .idea/
 credentials.h
 cmake-build-debug
+.DS_Store
+*.bak

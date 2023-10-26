@@ -64,10 +64,10 @@ class WeatherWidget : public Widget {
 
     uint8_t x_, y_;
     std::time_t last_api_call_;
+    IconElement weather_icon_;
     TextElement temperature_;
     TextElement coverage_;
-    TextElement min_temp_, max_temp_;
-    IconElement weather_icon_;
+    TextElement max_temp_, min_temp_;
 };
 
 }  // namespace aivju

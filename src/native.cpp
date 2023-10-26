@@ -26,7 +26,7 @@ void setup() {
     Font medium(DotzFontMedium);
     dashboard->addWidget(ClockWidget(1, 1, medium));
     dashboard->addWidget(DateWidget(1, 10, small));
-    dashboard->addWidget(WeatherWidget(50, 1, small, medium));
+    dashboard->addWidget(WeatherWidget(48, 1, small, medium));
 }
 
 void loop() {
@@ -37,6 +37,6 @@ int main() {
     setup();
     while (true) {
         loop();
-        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
