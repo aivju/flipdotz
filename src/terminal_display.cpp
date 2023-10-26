@@ -15,8 +15,8 @@ std::vector<char> buffer;
 
 TerminalDisplay::TerminalDisplay(uint8_t width, uint8_t height) : Display(width, height) {
     buffer.resize(width * height);
-    for (int idx = 0; idx < buffer.size(); idx++) {
-        buffer[idx] = ' ';
+    for (char& idx : buffer) {
+        idx = ' ';
     }
 }
 

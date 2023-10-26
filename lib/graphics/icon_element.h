@@ -20,7 +20,7 @@ class IconElement : public Element {
 
     IconElement(const uint16_t* data, uint8_t x, uint8_t y);
     void setData(const uint16_t* data);
-    void setData(const std::vector<uint16_t> data);
+    void setData(const std::vector<uint16_t>& data);
     void setPosition(uint8_t x, uint8_t y) override;
     void render(Display* display) const override;
 

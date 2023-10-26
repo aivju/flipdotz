@@ -21,7 +21,7 @@ void IconElement::setData(const uint16_t* data) {
     std::copy(data, data + 16, std::back_inserter(data_));
 }
 
-void IconElement::setData(const std::vector<uint16_t> data) {
+void IconElement::setData(const std::vector<uint16_t>& data) {
     data_ = data;
 }
 

@@ -2,12 +2,14 @@
 // All rights reserved. Redistribution and use in source and binary forms,
 // with or without modification, are not permitted.
 
+#include <algorithm>
 #include <iterator>
 #include <random>
 #include <string>
 #include <vector>
 
 #include "open_weather_endpoint.h"
+#include "weather_widget.h"
 
 namespace aivju {
 namespace {
@@ -33,6 +35,7 @@ WeatherData FetchWeatherData() {
     int num = rand() % range + 10;
     std::vector<std::string> coverages{"sonnig", "heiter", "sonnig", "heiter", "sonnig"};
 
+    std::copy(k01Icon, k01Icon + 16, std::back_inserter(data.icon));
     data.temperature = num;
     data.coverage = *select_randomly(coverages.begin(), coverages.end());
     data.temp_min = num - 3;
