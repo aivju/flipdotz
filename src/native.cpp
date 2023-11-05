@@ -13,6 +13,7 @@
 #include "dotzfont_small.h"
 #include "renderer.h"
 #include "weather_widget.h"
+#include "text_scroller.h"
 
 using namespace aivju;
 TerminalDisplay* display;
@@ -20,8 +21,6 @@ Renderer* dashboard;
 
 void setup() {
     display = new TerminalDisplay(kDisplayWidth, kDisplayHeight);
-    dashboard = new Renderer(display);
-
     Font small(DotzFontSmall);
     Font medium(DotzFontMedium);
     dashboard->addWidget(ClockWidget(1, 1, medium));

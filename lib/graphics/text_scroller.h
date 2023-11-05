@@ -21,7 +21,7 @@ class TextScroller {
     TextScroller(const std::string& text,
                  uint8_t x,
                  uint8_t y,
-                 Font& font,
+                 const Font& font,
                  ScrollDirection direction);
     void update();
     void render(Display* display);
@@ -29,7 +29,7 @@ class TextScroller {
   private:
     TextElement text_;
     ScrollDirection direction_;
-    uint8_t speed_{1};
+    uint8_t speed_{5};
     int offset_;
     uint8_t x_, y_;
 };

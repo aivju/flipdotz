@@ -22,7 +22,6 @@ void TextElement::setPosition(uint8_t x, uint8_t y) {
 }
 
 void TextElement::render(Display* display) const {
-    auto glyph = font_.getCharGlyph(56);
     TextRenderer renderer(display, font_);
     renderer.renderText(x_, y_, text_);
 }
