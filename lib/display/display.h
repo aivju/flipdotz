@@ -17,13 +17,13 @@ class Display {
     uint8_t getWidth() const;
     uint8_t getHeight() const;
     virtual void setPixel(uint8_t x, uint8_t y, bool toggle);
-    virtual void drawPixel(uint8_t x, uint8_t y, bool toggle) = 0;
     virtual void clear() = 0;
     virtual void clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) = 0;
     virtual void fill() = 0;
     void render();
 
   protected:
+    virtual void drawPixel(uint8_t x, uint8_t y, bool toggle) = 0;
     uint8_t width_;
     uint8_t height_;
     bool** current_buffer;
@@ -33,20 +33,24 @@ class Display {
 class FlipDotDisplay : public Display {
   public:
     FlipDotDisplay(uint8_t width, uint8_t height);
-    void drawPixel(uint8_t x, uint8_t y, bool toggle) override;
     void clear() override;
     void clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) override;
     void fill() override;
+
+  protected:
+    void drawPixel(uint8_t x, uint8_t y, bool toggle) override;
 };
 
 class TerminalDisplay : public Display {
   public:
     TerminalDisplay(uint8_t width, uint8_t height);
-    void drawPixel(uint8_t x, uint8_t y, bool toggle) override;
     void show();
     void clear() override;
     void clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) override;
     void fill() override;
+
+  protected:
+    void drawPixel(uint8_t x, uint8_t y, bool toggle) override;
 };
 
 }  // namespace aivju

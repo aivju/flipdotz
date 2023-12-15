@@ -29,7 +29,7 @@ void IconElement::render(Display* display) const {
     for (uint8_t row = 0; row < kHeight; ++row) {
         for (uint8_t col = 0; col < kWidth; ++col) {
             bool pixel = (data_[row] >> (kWidth - col)) & 0x01;
-            display->drawPixel(x_ + col, y_ + row, pixel);
+            display->setPixel(x_ + col, y_ + row, pixel);
         }
     }
 }

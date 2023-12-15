@@ -12,6 +12,7 @@ void Renderer::drawDisplay() {
     for (auto& ele : elements_) {
         ele->render(display_);
     }
+    display_->render();
 }
 
 }  // namespace aivju

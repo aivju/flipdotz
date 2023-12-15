@@ -38,7 +38,7 @@ void TextRenderer::renderText(uint8_t x, uint8_t y, const std::string& text) con
         for (int row = 0; row < glyph.bit_height; ++row) {
             for (int col = 0; col < glyph.bit_width; ++col) {
                 bool pixel = (data[row] >> (7 - col)) & 0x01;
-                display_->drawPixel(x + col + glyph.x_offset, y + row + glyph.y_offset, pixel);
+                display_->setPixel(x + col + glyph.x_offset, y + row + glyph.y_offset, pixel);
             }
         }
 
