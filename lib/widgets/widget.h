@@ -11,7 +11,7 @@ namespace aivju {
 
 class Widget {
   public:
-    virtual ~Widget() {}
+    virtual ~Widget() = default;
     virtual void render(Display* display) = 0;
 };
 }  // namespace aivju

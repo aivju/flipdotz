@@ -9,7 +9,7 @@
 
 namespace aivju {
 
-std::string StrFormat(const char* const format, ...);
+std::string StrFormat(const char* format, ...);
 
 }  // namespace aivju
 

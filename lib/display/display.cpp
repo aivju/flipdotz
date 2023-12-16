@@ -16,16 +16,21 @@ uint8_t GetModuleIndex(uint8_t module_idx) {
     }
 }
 
-Display::Display(uint8_t width, uint8_t height) : width_(width), height_(height) {
-    current_buffer = new bool*[width_];
-    next_buffer = new bool*[width_];
-    for (uint8_t idx = 0; idx < width_; idx++) {
-        current_buffer[idx] = new bool[height_]{false};
-        next_buffer[idx] = new bool[height_]{false};
-    }
-}
+Display::Display(uint8_t width, uint8_t height)
+    : width_(width),
+      height_(height),
+      current_buffer(width, std::vector<bool>(height, false)),
+      next_buffer(width, std::vector<bool>(height, false)) {}
 
 void Display::setPixel(uint8_t x, uint8_t y, bool toggle) {
+    if (x >= width_ || y >= height_) {
+        return;
+    }
+
+    if (current_buffer[x][y] == toggle) {
+        return;
+    }
+
     next_buffer[x][y] = toggle;
 }
 

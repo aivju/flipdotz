@@ -6,6 +6,7 @@
 #define DISPLAY_DISPLAY_H_
 
 #include <cstdint>
+#include <vector>
 
 namespace aivju {
 uint8_t GetModuleIndex(uint8_t x);
@@ -26,8 +27,8 @@ class Display {
     virtual void drawPixel(uint8_t x, uint8_t y, bool toggle) = 0;
     uint8_t width_;
     uint8_t height_;
-    bool** current_buffer;
-    bool** next_buffer;
+    std::vector<std::vector<bool>> current_buffer;
+    std::vector<std::vector<bool>> next_buffer;
 };
 
 class FlipDotDisplay : public Display {

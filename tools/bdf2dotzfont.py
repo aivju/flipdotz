@@ -113,7 +113,7 @@ def main(args):
         if char.rows:
             character = chr(char.encoding)
 
-        #offset, bit_width, bit_height, advance cursor, x-offset, y-offset
+        # offset, bit_width, bit_height, advance cursor, x-offset, y-offset
         print(
             "\t{ %d, %d, %d, %d, %d, %d }, /* 0x%02X %s '%s' */" % (
             char.offset, char.width, char.height, char.advance, char.xoff, char.yoff, char.encoding,
