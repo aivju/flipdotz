@@ -80,9 +80,9 @@ void FlipDotDisplay::drawPixel(uint8_t x, uint8_t y, bool toggle) {
 
     byte module_idx = (x < kModuleWidth * kNumModules) ? x / kModuleWidth : kNumModules;
     byte offset = !!(module_idx - module_idx % kNumModules) * kColumnShortModule;
-    byte column_module = x % kModuleWidth + offset;
+    byte col_idx = x % kModuleWidth + offset;
 
-    FlipDot(module_idx, y, column_module, toggle);
+    FlipDot(module_idx, y, col_idx, toggle);
 }
 
 void FlipDotDisplay::clear() {
@@ -98,7 +98,7 @@ void FlipDotDisplay::clear() {
 void FlipDotDisplay::clearArea(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
     for (uint8_t i = x; i < x + width; ++i) {
         for (uint8_t j = y; j < y + height; ++j) {
-            drawPixel(x, y, false);
+            setPixel(x, y, false);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace aivju {
 Renderer::Renderer(Display* display) : display_(display) {}
 
 void Renderer::drawDisplay() {
-    for (auto& ele : elements_) {
+    for (const auto& ele : elements_) {
         ele->render(display_);
     }
     display_->render();
