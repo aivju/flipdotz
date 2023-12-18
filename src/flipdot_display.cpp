@@ -74,10 +74,6 @@ FlipDotDisplay::FlipDotDisplay(uint8_t width, uint8_t height) : Display(width, h
 }
 
 void FlipDotDisplay::drawPixel(uint8_t x, uint8_t y, bool toggle) {
-    if (x >= kDisplayWidth || y >= kModuleHeight) {
-        return;
-    }
-
     byte module_idx = (x < kModuleWidth * kNumModules) ? x / kModuleWidth : kNumModules;
     byte offset = !!(module_idx - module_idx % kNumModules) * kColumnShortModule;
     byte col_idx = x % kModuleWidth + offset;

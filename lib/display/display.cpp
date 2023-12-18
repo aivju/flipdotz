@@ -23,11 +23,7 @@ Display::Display(uint8_t width, uint8_t height)
       next_buffer(width, std::vector<bool>(height, false)) {}
 
 void Display::setPixel(uint8_t x, uint8_t y, bool toggle) {
-    if (x >= width_ || y >= height_) {
-        return;
-    }
-
-    if (current_buffer[x][y] == toggle) {
+    if (x >= width_ || y >= height_ || current_buffer[x][y] == toggle) {
         return;
     }
 
