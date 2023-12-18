@@ -11,8 +11,6 @@
 
 namespace aivju {
 
-std::unique_ptr<tm> TimeInfo();
-
 std::string CurrentTime();
 std::string CurrentDate();
 

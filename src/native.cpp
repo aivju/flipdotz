@@ -21,6 +21,7 @@ Renderer* dashboard;
 
 void setup() {
     display = new TerminalDisplay(kDisplayWidth, kDisplayHeight);
+    dashboard = new Renderer(display);
     Font small(DotzFontSmall);
     Font medium(DotzFontMedium);
     dashboard->addWidget(ClockWidget(1, 1, medium));
