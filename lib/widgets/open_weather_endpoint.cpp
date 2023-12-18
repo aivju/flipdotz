@@ -54,7 +54,7 @@ WeatherData FetchWeatherData() {
         http.begin(url);
 
         auto http_response = http.GET();
-        if (http_response > 0) {
+        if (http_response == HTTP_CODE_OK) {
             const auto payload = http.getString();
             DynamicJsonDocument doc(2048);
             deserializeJson(doc, payload);
