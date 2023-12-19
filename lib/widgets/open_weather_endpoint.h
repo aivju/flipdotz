@@ -19,7 +19,7 @@ struct WeatherData {
     std::string coverage;
 };
 
-WeatherData FetchWeatherData();
+bool FetchWeatherData(WeatherData &data);
 
 }  // namespace aivju
 

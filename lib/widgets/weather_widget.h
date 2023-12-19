@@ -11,6 +11,7 @@
 #include "font.h"
 #include "icon_element.h"
 #include "text_element.h"
+#include "open_weather_endpoint.h"
 #include "widget.h"
 
 namespace aivju {
@@ -68,6 +69,7 @@ class WeatherWidget : public Widget {
     TextElement temperature_;
     TextElement coverage_;
     TextElement max_temp_, min_temp_;
+    WeatherData data_;
 };
 
 }  // namespace aivju

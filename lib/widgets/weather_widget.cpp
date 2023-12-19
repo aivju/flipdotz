@@ -41,13 +41,15 @@ void WeatherWidget::render(Display* display) {
 }
 
 void WeatherWidget::updateWeatherData() {
-    auto data = FetchWeatherData();
+    if (!FetchWeatherData(data_)) {
+        return;
+    }
 
-    temperature_.setText(StrFormat("%02d* C", data.temperature));
-    weather_icon_.setData(data.icon);
-    coverage_.setText(data.coverage);
-    min_temp_.setText(StrFormat("< %02d* C", data.temp_min));
-    max_temp_.setText(StrFormat("> %02d* C", data.temp_max));
+    temperature_.setText(StrFormat("%02d* C", data_.temperature));
+    weather_icon_.setData(data_.icon);
+    coverage_.setText(data_.coverage);
+    min_temp_.setText(StrFormat("< %02d* C", data_.temp_min));
+    max_temp_.setText(StrFormat("> %02d* C", data_.temp_max));
 }
 
 }  // namespace aivju

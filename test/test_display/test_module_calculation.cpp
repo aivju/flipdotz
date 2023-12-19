@@ -2,10 +2,10 @@
 // All rights reserved. Redistribution and use in source and binary forms,
 // with or without modification, are not permitted.
 
-#include <unity.h>
-
 #include "display.h"
 #include "display_config.h"
+
+#include <unity.h>
 
 using namespace aivju;
 

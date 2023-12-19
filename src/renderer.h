@@ -25,6 +25,7 @@ class Renderer {
 
     template <typename T>
     void addWidget(const T& widget) {
+        using namespace std;
         elements_.push_back(make_unique<T>(widget));
     }
 

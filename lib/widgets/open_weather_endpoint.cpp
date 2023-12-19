@@ -40,13 +40,28 @@ std::pair<std::string, const uint16_t*> CoverageForIcon(const std::string& icon)
         return {"Unknown", nullptr};  // Return nullptr if the icon is not found
     }
 }
+
+DeserializationError IsJsonTreeInvalid(const DynamicJsonDocument& doc) {
+    if (!doc.containsKey("main") ||
+        !doc.containsKey("weather")) {
+        return DeserializationError::InvalidInput;
+    }
+
+    if (!doc["main"].containsKey("temp") ||
+        !doc["main"].containsKey("temp_min") ||
+        !doc["main"].containsKey("temp_max")) {
+        return DeserializationError::InvalidInput;
+    }
+
+    return DeserializationError::Ok;
+}
+
 }  // namespace
 
 const char* kOpenWeatherHost = "http://api.openweathermap.org";
 const char* kCity = "Wiesbaden,DE";
 
-WeatherData FetchWeatherData() {
-    WeatherData data;
+bool FetchWeatherData(WeatherData &data) {
     if (WiFi.status() == WL_CONNECTED) {
         HTTPClient http;
         auto url = String(kOpenWeatherHost) + "/data/2.5/weather?q=" + kCity +
@@ -56,7 +71,10 @@ WeatherData FetchWeatherData() {
         if (http.GET() == HTTP_CODE_OK) {
             const auto payload = http.getString();
             DynamicJsonDocument doc(2048);
-            deserializeJson(doc, payload);
+            auto error = deserializeJson(doc, payload);
+            if (error || IsJsonTreeInvalid(doc)) {
+                return false;
+            }
 
             float tmp = doc["main"]["temp"];
             data.temperature = std::lrint(tmp);
@@ -72,7 +90,7 @@ WeatherData FetchWeatherData() {
         }
     }
 
-    return data;
+    return true;
 }
 
 }  // namespace aivju

@@ -83,10 +83,6 @@ IncludeBlocks:   Regroup
 # 3. other libraries' headers
 # 4. project headers.
 IncludeCategories:
-  - Regex: '^<hdre/'
-    Priority: 4
-  - Regex: '<(icu_utf)\.h>'
-    Priority: 3
   - Regex: '^<.*\.h>'
     Priority: 1
   - Regex: '^<.*'

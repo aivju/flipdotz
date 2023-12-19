@@ -8,7 +8,7 @@
 #include <memory>
 
 #if __cplusplus >= 201402L
-usig std::make_unique;
+using std::make_unique;
 #else
 template <typename T, typename... Args>
 typename std::enable_if<!std::is_array<T>::value, std::unique_ptr<T> >::type make_unique(
