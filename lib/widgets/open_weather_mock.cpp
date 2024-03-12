@@ -28,20 +28,19 @@ Iter select_randomly(Iter start, Iter end) {
 }
 }  // namespace
 
-WeatherData FetchWeatherData() {
-    WeatherData data;
+bool FetchWeatherData(WeatherData &data) {
 
     int range = 38 - 10 + 1;
     int num = rand() % range + 10;
     std::vector<std::string> coverages{"sonnig", "heiter", "sonnig", "heiter", "sonnig"};
 
-    std::copy(k01Icon, k01Icon + 16, std::back_inserter(data.icon));
+    std::copy(k04Icon, k04Icon + 16, std::back_inserter(data.icon));
     data.temperature = num;
     data.coverage = *select_randomly(coverages.begin(), coverages.end());
     data.temp_min = num - 3;
     data.temp_max = num + 6;
 
-    return data;
+    return true;
 }
 
 }  // namespace aivju

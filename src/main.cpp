@@ -22,6 +22,7 @@ FlipDotDisplay* display;
 Renderer* dashboard;
 
 const char* kNTPServer = "europe.pool.ntp.org";
+const char* kTZEuropeBerlin = "CET-1CEST,M3.5.0,M10.5.0/3";
 
 void connectWifi() {
     Serial.begin(MONITOR_SPEED);
@@ -36,7 +37,7 @@ void connectWifi() {
 }
 
 void configureTime() {
-    configTime(3600, 3600, kNTPServer);
+    configTzTime(kTZEuropeBerlin, kNTPServer);
     Serial.println("Waiting for time");
     while (!time(nullptr)) {
         Serial.print(".");

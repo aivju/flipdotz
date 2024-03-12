@@ -5,14 +5,14 @@
 #ifndef WIDGETS_WEATHER_WIDGETS_H_
 #define WIDGETS_WEATHER_WIDGETS_H_
 
-#include <cstdint>
-#include <ctime>
-
 #include "font.h"
 #include "icon_element.h"
-#include "text_element.h"
 #include "open_weather_endpoint.h"
+#include "text_element.h"
 #include "widget.h"
+
+#include <cstdint>
+#include <ctime>
 
 namespace aivju {
 
